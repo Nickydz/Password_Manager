@@ -8,6 +8,7 @@ import org.passay.LengthRule;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
 import org.passay.RuleResult;
+import org.passay.RuleResultDetail;
 
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -64,11 +65,22 @@ public class PasswordAnalysis {
 
 	@FXML
 	private void onChange(KeyEvent event){
+		//System.out.println("lol");
 		Password = PasswordInput.getText();
+		System.out.println(PasswordInput.getText());
 		addRules();
 		boolean isValid = validatePassword();
-		
+		System.out.println("is password valid : " + isValid);
+		checkEachValidation();
 
+	}
+
+	private void checkEachValidation() {
+		// TODO Auto-generated method stub
+		for(RuleResultDetail msg : result.getDetails()){
+			System.out.println(msg);
+		}
+		
 	}
 
 	private boolean validatePassword() {
