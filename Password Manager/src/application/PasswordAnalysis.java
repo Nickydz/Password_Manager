@@ -1,5 +1,14 @@
 package application;
 
+import java.util.Arrays;
+
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.LengthRule;
+import org.passay.PasswordData;
+import org.passay.PasswordValidator;
+import org.passay.RuleResult;
+
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +22,9 @@ import javafx.scene.text.Text;
 public class PasswordAnalysis {
 
 
-	Password password = new Password();
+	private String Password;
+	PasswordValidator validator;
+	RuleResult result;
 
 	@FXML 
 	private TextField PasswordInput;
@@ -47,15 +58,49 @@ public class PasswordAnalysis {
 
 	@FXML 
 	private Text PWQualityMetrics;
-	
+
 	@FXML 
 	private Button button;
 
 	@FXML
 	private void onChange(KeyEvent event){
-		System.out.println("lol");
+		Password = PasswordInput.getText();
+		addRules();
+		boolean isValid = validatePassword();
+		
 
 	}
+
+	private boolean validatePassword() {
+		// TODO Auto-generated method stub
+		result = validator.validate(new PasswordData(new String(Password)));
+		if(result.isValid())
+			return true;
+		return false;
+	}
+
+	private void addRules() {
+		validator = new PasswordValidator(Arrays.asList(
+				// length between 8 and 16 characters
+				new LengthRule(8, 16),
+
+				// at least one upper-case character
+				new CharacterRule(EnglishCharacterData.UpperCase, 2),
+
+				// at least one lower-case character
+				new CharacterRule(EnglishCharacterData.LowerCase, 2),
+
+				// at least one digit character
+				new CharacterRule(EnglishCharacterData.Digit, 2),
+
+				// at least one symbol (special character)
+				new CharacterRule(EnglishCharacterData.Special, 2)
+
+				));
+		
+	}
+	
+	
 
 
 
