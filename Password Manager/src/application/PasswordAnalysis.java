@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.passay.CharacterRule;
@@ -24,9 +25,22 @@ public class PasswordAnalysis {
 
 
 	private String Password;
-	PasswordValidator validator;
-	RuleResult result;
-
+	private PasswordValidator validator;
+	private RuleResult result;
+	/*"TOO_SHORT";
+	"INSUFFICIENT_UPPERCASE
+	INSUFFICIENT_LOWERCASE
+	INSUFFICIENT_DIGIT
+	INSUFFICIENT_SPECIAL"
+	*/
+	
+	private String PWLengthText = "";
+	private String NumberofNumsText = "";
+	private String NumberofUpperCText = "";
+	private String NumberofLowerCText = "";
+	private String NumberofSymbolsText = "";
+	
+	
 	@FXML 
 	private TextField PasswordInput;
 
@@ -77,9 +91,44 @@ public class PasswordAnalysis {
 
 	private void checkEachValidation() {
 		// TODO Auto-generated method stub
+		
+		initializeLabels();
+		ArrayList<String> listofErrors = new ArrayList<String>();
 		for(RuleResultDetail msg : result.getDetails()){
-			System.out.println(msg);
+			//System.out.println(msg.getErrorCode());
+			listofErrors.add(msg.getErrorCode());
 		}
+		if(listofErrors.contains("TOO_SHORT")){
+			PWLengthText += "-- TOO SHORT";
+		}
+		if(listofErrors.contains("INSUFFICIENT_UPPERCASE")){
+			NumberofUpperCText += "-- uppercase insufficient";
+		}
+		if(listofErrors.contains("INSUFFICIENT_LOWERCASE")){
+			NumberofLowerCText += "-- lower case insufficient";
+		}
+		if(listofErrors.contains("INSUFFICIENT_DIGIT")){
+			NumberofNumsText += "--insufficient digits";
+		}
+		if(listofErrors.contains("INSUFFICIENT_SPECIAL")){
+			NumberofSymbolsText += "-- insuffcient specials";
+		}
+		
+		PWLength.setText(PWLengthText);
+		NumberofNums.setText(NumberofNumsText);
+		NumofUpperC.setText(NumberofUpperCText);
+		NumofSymbols.setText(NumberofSymbolsText);
+		NumofLowerC.setText(NumberofLowerCText);
+		
+	}
+
+	private void initializeLabels() {
+		// TODO Auto-generated method stub
+		PWLengthText = "";
+		NumberofNumsText = "";
+		NumberofUpperCText = "";
+		NumberofLowerCText = "";
+		NumberofSymbolsText = "";
 		
 	}
 
@@ -109,10 +158,10 @@ public class PasswordAnalysis {
 				new CharacterRule(EnglishCharacterData.Special, 2)
 
 				));
-		
+
 	}
-	
-	
+
+
 
 
 
