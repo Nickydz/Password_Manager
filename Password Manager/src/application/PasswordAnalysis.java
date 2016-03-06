@@ -120,6 +120,7 @@ public class PasswordAnalysis {
 		NumofSymbols.setText(NumberofSymbolsText);
 		NumofLowerC.setText(NumberofLowerCText);
 		
+		listofErrors = null;
 	}
 
 	private void initializeLabels() {
