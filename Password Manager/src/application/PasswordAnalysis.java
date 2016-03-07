@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.passay.CharacterRule;
+import org.passay.CharacterSequence;
 import org.passay.EnglishCharacterData;
+import org.passay.EnglishSequenceData;
+import org.passay.IllegalRegexRule;
+import org.passay.IllegalSequenceRule;
 import org.passay.LengthRule;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
@@ -39,6 +43,9 @@ public class PasswordAnalysis {
 	private String NumberofUpperCText = "";
 	private String NumberofLowerCText = "";
 	private String NumberofSymbolsText = "";
+	private String NumberofCharsText = "";
+	private String NumofRepeatedCharText = "";
+	private String IllegalSequenceLabelText = "";
 	
 	
 	@FXML 
@@ -70,7 +77,10 @@ public class PasswordAnalysis {
 
 	@FXML 
 	private Label NumofRepeatedChar;
-
+	
+	@FXML 
+	private Label IllegalSequenceLabel;
+	
 	@FXML 
 	private Text PWQualityMetrics;
 
@@ -95,7 +105,7 @@ public class PasswordAnalysis {
 		initializeLabels();
 		ArrayList<String> listofErrors = new ArrayList<String>();
 		for(RuleResultDetail msg : result.getDetails()){
-			//System.out.println(msg.getErrorCode());
+			System.out.println(msg.getErrorCode());
 			listofErrors.add(msg.getErrorCode());
 		}
 		if(listofErrors.contains("TOO_SHORT")){
@@ -113,12 +123,26 @@ public class PasswordAnalysis {
 		if(listofErrors.contains("INSUFFICIENT_SPECIAL")){
 			NumberofSymbolsText += "-- insuffcient specials";
 		}
+		if(listofErrors.contains("INSUFFICIENT_ALPHABETICAL")){
+			NumberofCharsText += "-- insuffcient characters";
+		}
+		if(listofErrors.contains("ILLEGAL_MATCH")){
+			NumofRepeatedCharText += "-- repeated charatcers not allowed";
+		}
+		
+		if(listofErrors.contains("ILLEGAL_NUMERICAL_SEQUENCE") || listofErrors.contains("ILLEGAL_ALPHABETICAL_SEQUENCE") || listofErrors.contains("ILLEGAL_QWERTY_SEQUENCE")){
+			IllegalSequenceLabelText += "-- sequence of 3 not allowed";
+		}
+		
 		
 		PWLength.setText(PWLengthText);
 		NumberofNums.setText(NumberofNumsText);
 		NumofUpperC.setText(NumberofUpperCText);
 		NumofSymbols.setText(NumberofSymbolsText);
 		NumofLowerC.setText(NumberofLowerCText);
+		NumberofChars.setText(NumberofCharsText);
+		NumofRepeatedChar.setText(NumofRepeatedCharText);
+		IllegalSequenceLabel.setText(IllegalSequenceLabelText);
 		
 		listofErrors = null;
 	}
@@ -130,6 +154,9 @@ public class PasswordAnalysis {
 		NumberofUpperCText = "";
 		NumberofLowerCText = "";
 		NumberofSymbolsText = "";
+		NumberofCharsText = "";
+		NumofRepeatedCharText = "";
+		IllegalSequenceLabelText = "";
 		
 	}
 
@@ -156,7 +183,17 @@ public class PasswordAnalysis {
 				new CharacterRule(EnglishCharacterData.Digit, 2),
 
 				// at least one symbol (special character)
-				new CharacterRule(EnglishCharacterData.Special, 2)
+				new CharacterRule(EnglishCharacterData.Special, 2),
+				
+				new CharacterRule(EnglishCharacterData.Alphabetical,2),
+				
+				new IllegalRegexRule("(\\w)\\1+"),
+				
+				new IllegalSequenceRule(EnglishSequenceData.Alphabetical,3,true),
+				
+				new IllegalSequenceRule(EnglishSequenceData.Numerical,3,true),
+				
+				new IllegalSequenceRule(EnglishSequenceData.USQwerty,3,true)
 
 				));
 
