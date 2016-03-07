@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.passay.CharacterRule;
-import org.passay.CharacterSequence;
 import org.passay.EnglishCharacterData;
 import org.passay.EnglishSequenceData;
 import org.passay.IllegalRegexRule;
@@ -15,8 +14,7 @@ import org.passay.PasswordValidator;
 import org.passay.RuleResult;
 import org.passay.RuleResultDetail;
 
-import javafx.beans.property.StringProperty;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,12 +29,7 @@ public class PasswordAnalysis {
 	private String Password;
 	private PasswordValidator validator;
 	private RuleResult result;
-	/*"TOO_SHORT";
-	"INSUFFICIENT_UPPERCASE
-	INSUFFICIENT_LOWERCASE
-	INSUFFICIENT_DIGIT
-	INSUFFICIENT_SPECIAL"
-	*/
+
 	
 	private String PWLengthText = "";
 	private String NumberofNumsText = "";
@@ -198,6 +191,8 @@ public class PasswordAnalysis {
 				));
 
 	}
+	
+	
 
 
 
