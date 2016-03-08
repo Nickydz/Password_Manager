@@ -1,7 +1,9 @@
 package application;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
@@ -14,8 +16,11 @@ import org.passay.PasswordValidator;
 import org.passay.RuleResult;
 import org.passay.RuleResultDetail;
 
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -23,12 +28,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
-public class PasswordAnalysis {
+public class PasswordAnalysis implements Initializable{
 
 
 	private String Password;
 	private PasswordValidator validator;
 	private RuleResult result;
+	private PasswordScore score;
 
 	
 	private String PWLengthText = "";
@@ -85,46 +91,79 @@ public class PasswordAnalysis {
 		//System.out.println("lol");
 		Password = PasswordInput.getText();
 		System.out.println(PasswordInput.getText());
-		addRules();
 		boolean isValid = validatePassword();
 		System.out.println("is password valid : " + isValid);
 		checkEachValidation();
-
+		System.out.println(score.getPasswordscore());
 	}
 
 	private void checkEachValidation() {
 		// TODO Auto-generated method stub
-		
 		initializeLabels();
 		ArrayList<String> listofErrors = new ArrayList<String>();
 		for(RuleResultDetail msg : result.getDetails()){
 			System.out.println(msg.getErrorCode());
 			listofErrors.add(msg.getErrorCode());
 		}
+		
+		score.setPasswordscore(score.getPasswordscore()*0.05);
+		
 		if(listofErrors.contains("TOO_SHORT")){
 			PWLengthText += "-- TOO SHORT";
+			score.setPasswordscore(score.getPasswordscore() - 0.05); 
+		}
+		else{
+			score.setPasswordscore(score.getPasswordscore() + 0.1);
 		}
 		if(listofErrors.contains("INSUFFICIENT_UPPERCASE")){
 			NumberofUpperCText += "-- uppercase insufficient";
+			score.setPasswordscore(score.getPasswordscore() - 0.05); 
+		}
+		else{
+			score.setPasswordscore(score.getPasswordscore() + 0.1);
 		}
 		if(listofErrors.contains("INSUFFICIENT_LOWERCASE")){
 			NumberofLowerCText += "-- lower case insufficient";
+			score.setPasswordscore(score.getPasswordscore() - 0.05); 
+		}
+		else{
+			score.setPasswordscore(score.getPasswordscore() + 0.1);
 		}
 		if(listofErrors.contains("INSUFFICIENT_DIGIT")){
 			NumberofNumsText += "--insufficient digits";
+			score.setPasswordscore(score.getPasswordscore() - 0.05);
+		}
+		else{
+			score.setPasswordscore(score.getPasswordscore() + 0.1);
 		}
 		if(listofErrors.contains("INSUFFICIENT_SPECIAL")){
 			NumberofSymbolsText += "-- insuffcient specials";
+			score.setPasswordscore(score.getPasswordscore() - 0.05);
+		}
+		else{
+			score.setPasswordscore(score.getPasswordscore() + 0.1);
 		}
 		if(listofErrors.contains("INSUFFICIENT_ALPHABETICAL")){
 			NumberofCharsText += "-- insuffcient characters";
+			score.setPasswordscore(score.getPasswordscore() + 0.05);
+		}
+		else{
+			score.setPasswordscore(score.getPasswordscore() + 0.1);
 		}
 		if(listofErrors.contains("ILLEGAL_MATCH")){
 			NumofRepeatedCharText += "-- repeated charatcers not allowed";
+			score.setPasswordscore(score.getPasswordscore() - 0.05);
+		}
+		else{
+			score.setPasswordscore(score.getPasswordscore() + 0.1);
 		}
 		
 		if(listofErrors.contains("ILLEGAL_NUMERICAL_SEQUENCE") || listofErrors.contains("ILLEGAL_ALPHABETICAL_SEQUENCE") || listofErrors.contains("ILLEGAL_QWERTY_SEQUENCE")){
 			IllegalSequenceLabelText += "-- sequence of 3 not allowed";
+			score.setPasswordscore(score.getPasswordscore() - 0.05);
+		}
+		else{
+			score.setPasswordscore(score.getPasswordscore() + 0.1);
 		}
 		
 		
@@ -192,6 +231,32 @@ public class PasswordAnalysis {
 
 	}
 	
+	@FXML 
+	private void pbCheck(ActionEvent event){
+		score.setPasswordscore(score.getPasswordscore() + 0.1);
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		Progress = new ProgressBar();
+		score = new PasswordScore();
+		addRules();
+		score.setPasswordscore(0);
+		score.numberProperty().addListener( new ChangeListener<Object>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
+				// TODO Auto-generated method stub
+				
+				
+			}
+		}
+				);
+		Progress.progressProperty().bind(score.numberProperty());
+		
+		
+	}
 	
 
 
