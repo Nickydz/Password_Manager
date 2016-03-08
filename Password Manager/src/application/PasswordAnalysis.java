@@ -104,7 +104,7 @@ public class PasswordAnalysis implements Initializable{
 			listofErrors.add(msg.getErrorCode());
 		}
 		
-		score.setPasswordscore(score.getPasswordscore()*0.05);
+		score.setPasswordscore(score.getPasswordscore() + Password.length()*0.005);
 		
 		if(listofErrors.contains("TOO_SHORT")){
 			PWLengthText += "-- TOO SHORT";
@@ -237,11 +237,12 @@ public class PasswordAnalysis implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		Progress = new ProgressBar();
 		score = new PasswordScore();
 		addRules();
 		score.setPasswordscore(0);
 		score.numberProperty().addListener((v,oldValue,newValue) -> {
+			System.out.println(oldValue);
+			System.out.println(newValue);
 			
 		});
 		Progress.progressProperty().bind(score.numberProperty());
