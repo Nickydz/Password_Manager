@@ -16,8 +16,6 @@ import org.passay.PasswordValidator;
 import org.passay.RuleResult;
 import org.passay.RuleResultDetail;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -243,16 +241,9 @@ public class PasswordAnalysis implements Initializable{
 		score = new PasswordScore();
 		addRules();
 		score.setPasswordscore(0);
-		score.numberProperty().addListener( new ChangeListener<Object>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
-				// TODO Auto-generated method stub
-				
-				
-			}
-		}
-				);
+		score.numberProperty().addListener((v,oldValue,newValue) -> {
+			
+		});
 		Progress.progressProperty().bind(score.numberProperty());
 		
 		
