@@ -207,14 +207,14 @@ public class PasswordAnalysis implements Initializable{
 
 	private void initializeLabels() {
 		// TODO Auto-generated method stub
-		PWLengthText = "";
-		NumberofNumsText = "";
-		NumberofUpperCText = "";
-		NumberofLowerCText = "";
-		NumberofSymbolsText = "";
-		NumberofCharsText = "";
-		NumofRepeatedCharText = "";
-		IllegalSequenceLabelText = "";
+		PWLengthText = "Length of PW : ";
+		NumberofNumsText = "Number of digits : ";
+		NumberofUpperCText = "Number of upper case:";
+		NumberofLowerCText = "Number of lower case :";
+		NumberofSymbolsText = "Number of Symobols : ";
+		NumberofCharsText = "NumberofChars :";
+		NumofRepeatedCharText = "Num of repeated chars";
+		IllegalSequenceLabelText = "Illgal sequence";
 
 		PWLengthisValid = false ;
 		NumberofNumsisValid = false ;
