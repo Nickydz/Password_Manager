@@ -18,7 +18,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Password_Analysis.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Password_Generation.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 700, 575));
         primaryStage.show();
