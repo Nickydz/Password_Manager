@@ -33,6 +33,7 @@ public class PasswordAnalysis implements Initializable{
 	private PasswordValidator validator;
 	private RuleResult result;
 	private PasswordScore score;
+	private double scoreVar;
 
 	
 	private String PWLengthText = "";
@@ -43,6 +44,15 @@ public class PasswordAnalysis implements Initializable{
 	private String NumberofCharsText = "";
 	private String NumofRepeatedCharText = "";
 	private String IllegalSequenceLabelText = "";
+	
+	private boolean PWLengthisValid ;
+	private boolean NumberofNumsisValid ;
+	private boolean NumberofUpperCisValid ;
+	private boolean NumberofLowerCisValid ;
+	private boolean NumberofSymbolsisValid ;
+	private boolean NumberofCharsisValid ;
+	private boolean NumofRepeatedCharisValid ;
+	private boolean IllegalSequenceLabelisValid ;
 	
 	
 	@FXML 
