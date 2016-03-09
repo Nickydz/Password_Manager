@@ -33,6 +33,7 @@ public class PasswordAnalysis implements Initializable{
 	private PasswordValidator validator;
 	private RuleResult result;
 	private PasswordScore score;
+	private double scorevariable;
 
 	
 	private String PWLengthText = "";
@@ -104,45 +105,53 @@ public class PasswordAnalysis implements Initializable{
 			listofErrors.add(msg.getErrorCode());
 		}
 		
-		score.setPasswordscore(score.getPasswordscore() + Password.length()*0.05);
+		scorevariable = Password.length()*8;
 		
 		if(listofErrors.contains("TOO_SHORT")){
 			PWLengthText += "-- TOO SHORT";
-			score.setPasswordscore(score.getPasswordscore() - 0.1); 
+			if(scorevariable > 20)
+			scorevariable -= 5;  
 		}
 		if(listofErrors.contains("INSUFFICIENT_UPPERCASE")){
 			NumberofUpperCText += "-- uppercase insufficient";
-			score.setPasswordscore(score.getPasswordscore() - 0.1);
+			if(scorevariable > 20)
+			scorevariable -= 5;
 		}
 		if(listofErrors.contains("INSUFFICIENT_LOWERCASE")){
 			NumberofLowerCText += "-- lower case insufficient";
-			score.setPasswordscore(score.getPasswordscore() - 0.1); 
+			if(scorevariable > 20)
+			scorevariable -= 5; 
 		}
 		if(listofErrors.contains("INSUFFICIENT_DIGIT")){
 			NumberofNumsText += "--insufficient digits";
-			score.setPasswordscore(score.getPasswordscore() - 0.1);
+			if(scorevariable > 20)
+			scorevariable -= 5;
 		}
 		if(listofErrors.contains("INSUFFICIENT_SPECIAL")){
 			NumberofSymbolsText += "-- insuffcient specials";
-			score.setPasswordscore(score.getPasswordscore() - 0.1);
+			if(scorevariable > 20)
+			scorevariable -= 5;
 		}
 		if(listofErrors.contains("INSUFFICIENT_ALPHABETICAL")){
 			NumberofCharsText += "-- insuffcient characters";
-			score.setPasswordscore(score.getPasswordscore() - 0.1);
+			if(scorevariable > 20)
+			scorevariable -= 5;
 		}
 		
 		if(listofErrors.contains("ILLEGAL_MATCH")){
 			NumofRepeatedCharText += "-- repeated charatcers not allowed";
-			score.setPasswordscore(score.getPasswordscore() - 0.1);
+			if(scorevariable > 20)
+			scorevariable -= 5;
 		}
 		
 		
 		if(listofErrors.contains("ILLEGAL_NUMERICAL_SEQUENCE") || listofErrors.contains("ILLEGAL_ALPHABETICAL_SEQUENCE") || listofErrors.contains("ILLEGAL_QWERTY_SEQUENCE")){
 			IllegalSequenceLabelText += "-- sequence of 3 not allowed";
-			score.setPasswordscore(score.getPasswordscore() - 0.1);
+			if(scorevariable > 20)
+			scorevariable -= 5;
 		}
-		
-		
+		if(scorevariable < 100)
+		score.setPasswordscore(scorevariable*0.01);
 		
 		PWLength.setText(PWLengthText);
 		NumberofNums.setText(NumberofNumsText);
@@ -218,7 +227,7 @@ public class PasswordAnalysis implements Initializable{
 		// TODO Auto-generated method stub
 		score = new PasswordScore();
 		addRules();
-		score.setPasswordscore(0);
+		score.setPasswordscore(0.2);
 		score.numberProperty().addListener((v,oldValue,newValue) -> {
 			System.out.println(oldValue);
 			System.out.println(newValue);
