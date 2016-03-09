@@ -104,65 +104,44 @@ public class PasswordAnalysis implements Initializable{
 			listofErrors.add(msg.getErrorCode());
 		}
 		
-		score.setPasswordscore(score.getPasswordscore() + Password.length()*0.005);
+		score.setPasswordscore(score.getPasswordscore() + Password.length()*0.05);
 		
 		if(listofErrors.contains("TOO_SHORT")){
 			PWLengthText += "-- TOO SHORT";
-			score.setPasswordscore(score.getPasswordscore() - 0.05); 
-		}
-		else{
-			score.setPasswordscore(score.getPasswordscore() + 0.1);
+			score.setPasswordscore(score.getPasswordscore() - 0.1); 
 		}
 		if(listofErrors.contains("INSUFFICIENT_UPPERCASE")){
 			NumberofUpperCText += "-- uppercase insufficient";
-			score.setPasswordscore(score.getPasswordscore() - 0.05); 
-		}
-		else{
-			score.setPasswordscore(score.getPasswordscore() + 0.1);
+			score.setPasswordscore(score.getPasswordscore() - 0.1);
 		}
 		if(listofErrors.contains("INSUFFICIENT_LOWERCASE")){
 			NumberofLowerCText += "-- lower case insufficient";
-			score.setPasswordscore(score.getPasswordscore() - 0.05); 
-		}
-		else{
-			score.setPasswordscore(score.getPasswordscore() + 0.1);
+			score.setPasswordscore(score.getPasswordscore() - 0.1); 
 		}
 		if(listofErrors.contains("INSUFFICIENT_DIGIT")){
 			NumberofNumsText += "--insufficient digits";
-			score.setPasswordscore(score.getPasswordscore() - 0.05);
-		}
-		else{
-			score.setPasswordscore(score.getPasswordscore() + 0.1);
+			score.setPasswordscore(score.getPasswordscore() - 0.1);
 		}
 		if(listofErrors.contains("INSUFFICIENT_SPECIAL")){
 			NumberofSymbolsText += "-- insuffcient specials";
-			score.setPasswordscore(score.getPasswordscore() - 0.05);
-		}
-		else{
-			score.setPasswordscore(score.getPasswordscore() + 0.1);
+			score.setPasswordscore(score.getPasswordscore() - 0.1);
 		}
 		if(listofErrors.contains("INSUFFICIENT_ALPHABETICAL")){
 			NumberofCharsText += "-- insuffcient characters";
-			score.setPasswordscore(score.getPasswordscore() + 0.05);
+			score.setPasswordscore(score.getPasswordscore() - 0.1);
 		}
-		else{
-			score.setPasswordscore(score.getPasswordscore() + 0.1);
-		}
+		
 		if(listofErrors.contains("ILLEGAL_MATCH")){
 			NumofRepeatedCharText += "-- repeated charatcers not allowed";
-			score.setPasswordscore(score.getPasswordscore() - 0.05);
+			score.setPasswordscore(score.getPasswordscore() - 0.1);
 		}
-		else{
-			score.setPasswordscore(score.getPasswordscore() + 0.1);
-		}
+		
 		
 		if(listofErrors.contains("ILLEGAL_NUMERICAL_SEQUENCE") || listofErrors.contains("ILLEGAL_ALPHABETICAL_SEQUENCE") || listofErrors.contains("ILLEGAL_QWERTY_SEQUENCE")){
 			IllegalSequenceLabelText += "-- sequence of 3 not allowed";
-			score.setPasswordscore(score.getPasswordscore() - 0.05);
+			score.setPasswordscore(score.getPasswordscore() - 0.1);
 		}
-		else{
-			score.setPasswordscore(score.getPasswordscore() + 0.1);
-		}
+		
 		
 		
 		PWLength.setText(PWLengthText);
