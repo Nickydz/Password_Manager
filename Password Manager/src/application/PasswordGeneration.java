@@ -49,7 +49,9 @@ public class PasswordGeneration {
 		System.out.println(length);
 		if(length.length() == 0){
 			new AlertBox().display("Length not entered", "You must enter a length!!");
-			event.consume();
+		}
+		else if(!length.matches("[0-9]+")){
+			new AlertBox().display("Length should be a number", "You must enter a number!!");
 		}
 		else{
 

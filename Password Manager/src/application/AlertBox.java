@@ -14,6 +14,8 @@ public class AlertBox {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle(title);
+		window.setHeight(250);
+		window.setWidth(250);
 		
 		Button bt = new Button("OK, Sorry");
 		bt.setOnAction(e -> {
