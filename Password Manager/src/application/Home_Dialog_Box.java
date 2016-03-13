@@ -12,7 +12,12 @@ import javafx.stage.Stage;
 
 public class Home_Dialog_Box {
 	
-	
+	private String UserID;
+
+	public Home_Dialog_Box(String userID) {
+		// TODO Auto-generated constructor stub
+		this.UserID = userID;
+	}
 
 	public void display(String function) throws Exception{
 		if(function.equals("add"))

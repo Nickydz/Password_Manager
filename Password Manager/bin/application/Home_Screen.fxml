@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreen">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreen">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,10 +21,10 @@
       </HBox>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="538.0" prefWidth="168.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Password Analysis" />
-            <Button mnemonicParsing="false" text="Password Generation" />
+            <Button fx:id="PWAnalysisBT" mnemonicParsing="false" onMouseClicked="#onPWAnalysisClick" prefHeight="31.0" prefWidth="154.0" text="Password Analysis" />
+            <Button fx:id="PWGenerationBT" mnemonicParsing="false" onMouseClicked="#onPWGenerationClick" text="Password Generation" />
             <Button mnemonicParsing="false" text="Secure Notes" />
             <Button mnemonicParsing="false" text="Account Settings" />
             <Button mnemonicParsing="false" text="Log Out" />
