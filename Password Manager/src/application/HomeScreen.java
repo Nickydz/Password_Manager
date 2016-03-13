@@ -1,34 +1,56 @@
 package application;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 
 public class HomeScreen {
 
 	@FXML
-	Button addEntryBT;
+	private Button addEntryBT;
 	
 	@FXML
-	Button deleteEntryBT;
+	private Button editEntryBT;
 	
 	@FXML
-	Button PWGenerationBT;
+	private Button deleteEntryBT;
 	
 	@FXML
-	Button PWAnalysisBT;
+	private Button PWGenerationBT;
 	
 	@FXML
-	Button SNotesBT;
+	private Button PWAnalysisBT;
 	
 	@FXML
-	Button AccSettingsBT;
+	private Button SNotesBT;
 	
 	@FXML
-	Button SearchBTBT;
+	private Button AccSettingsBT;
 	
 	@FXML
-	Button LogOutBT;
+	private Button SearchBTBT;
 	
+	@FXML
+	private Button LogOutBT;
 	
+	@FXML
+	private void onAddEntry(MouseEvent event) throws Exception{
+		System.out.println("lol");
+		new Home_Dialog_Box().display("add");
+	}
+	
+	@FXML
+	private void onDeleteEntry(MouseEvent event) throws Exception{
+		System.out.println("lol");
+		new Home_Dialog_Box().display("delete");
+	}
+	
+	@FXML
+	private void onEditEntry(MouseEvent event) throws Exception{
+		System.out.println("lol");
+		new Home_Dialog_Box().display("edit");
+	}
 	
 }
+

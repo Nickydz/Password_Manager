@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreen">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Button" />
-            <Button mnemonicParsing="false" text="Button" />
-            <Button mnemonicParsing="false" text="Button" />
-            <Button mnemonicParsing="false" text="Button" />
+            <Button fx:id="addEntryBT" mnemonicParsing="false" onMouseClicked="#onAddEntry" prefHeight="31.0" prefWidth="111.0" text="Add" />
+            <Button fx:id="deleteEntryBT" mnemonicParsing="false" onMouseClicked="#onDeleteEntry" prefHeight="31.0" prefWidth="140.0" text="Delete" />
+            <Button fx:id="editEntryBT" mnemonicParsing="false" onMouseClicked="#onEditEntry" prefHeight="31.0" prefWidth="135.0" text="Edit" />
+            <Region prefHeight="100.0" prefWidth="474.0" />
+            <TextField />
+            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Seacrh" />
          </children>
       </HBox>
    </top>
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Button" />
+            <Button mnemonicParsing="false" text="Password Analysis" />
+            <Button mnemonicParsing="false" text="Password Generation" />
+            <Button mnemonicParsing="false" text="Secure Notes" />
+            <Button mnemonicParsing="false" text="Account Settings" />
+            <Button mnemonicParsing="false" text="Log Out" />
          </children>
       </VBox>
    </left>

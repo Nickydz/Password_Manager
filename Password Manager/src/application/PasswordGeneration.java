@@ -43,7 +43,7 @@ public class PasswordGeneration {
 	private TextField PasswordLength;
 
 	@FXML
-	private void onChange(MouseEvent event){
+	private void onChange(MouseEvent event) throws Exception{
 
 		String length = PasswordLength.getText();
 		System.out.println(length);
@@ -90,7 +90,7 @@ public class PasswordGeneration {
 
 	}
 
-	private boolean getChoices() {
+	private boolean getChoices() throws Exception{
 		// TODO Auto-generated method stub
 		if(!Digits.isSelected() && !Special.isSelected() && !UpperCase.isSelected() && !LowerCase.isSelected() ){
 			new AlertBox().display("no choice Selected!"," you must select atleast one choice!!!!!!!!!!");
