@@ -2,6 +2,7 @@ package application;
 
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -31,6 +32,18 @@ public class HomeScreen implements Initializable{
 	
 	@FXML
 	private TableView<UserEntries> table;
+	
+	@FXML
+	private	TableColumn<UserEntries,String> accountColumn;
+	
+	@FXML
+	private	TableColumn<UserEntries,String> loginColumn;
+	
+	@FXML
+	private	TableColumn<UserEntries,String> passwordColumn;
+	
+	@FXML
+	private	TableColumn<UserEntries,String> categoryColumn;
 	
 	@FXML
 	private Button addEntryBT;
@@ -103,12 +116,17 @@ public class HomeScreen implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		constructEntryTable();
+		try {
+			constructEntryTable();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
 
-	private void constructEntryTable() {
+	private void constructEntryTable() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		TableColumn<UserEntries,String> accountColumn = new TableColumn("Account");
 		accountColumn.setCellFactory(new PropertyValueFactory("account_name"));
@@ -117,20 +135,17 @@ public class HomeScreen implements Initializable{
 		loginColumn.setCellFactory(new PropertyValueFactory("login_id"));
 		
 		TableColumn<UserEntries,String> passwordColumn = new TableColumn("Password");
-		passwordColumn.setCellFactory(new PropertyValueFactory("account_name"));
+		passwordColumn.setCellFactory(new PropertyValueFactory("password"));
 		
-		TableColumn<UserEntries,String> categoryColumn = new TableColumn("Account");
-		categoryColumn.setCellFactory(new PropertyValueFactory("account_name"));
-		
+		TableColumn<UserEntries,String> categoryColumn = new TableColumn("Category");
+		categoryColumn.setCellFactory(new PropertyValueFactory("category"));
 		table.setItems(getEntries());
 		
 	}
 
-	private ObservableList<UserEntries> getEntries() {
+	private ObservableList<UserEntries> getEntries() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		ObservableList<UserEntries> userEntries = FXCollections.observableArrayList();
-		UserEntries entries = new UserEntries()
-		userEntries.add(.getUserEntries());
+		ObservableList<UserEntries> userEntries = FXCollections.observableArrayList(new Account(UserID).getEntries());
 		return userEntries;
 	}
 
