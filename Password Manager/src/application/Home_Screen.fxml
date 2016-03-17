@@ -36,8 +36,10 @@
    <center>
       <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="accountColumn" prefWidth="75.0" text="Account Name" />
+            <TableColumn fx:id="loginColumn" prefWidth="75.0" text="Login" />
+            <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
+          <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
         </columns>
       </TableView>
    </center>

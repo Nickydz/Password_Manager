@@ -118,27 +118,23 @@ public class HomeScreen implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			constructEntryTable();
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		
 	}
 	
 
 	private void constructEntryTable() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		TableColumn<UserEntries,String> accountColumn = new TableColumn("Account");
-		accountColumn.setCellFactory(new PropertyValueFactory("account_name"));
-		
-		TableColumn<UserEntries,String> loginColumn = new TableColumn("Login");
-		loginColumn.setCellFactory(new PropertyValueFactory("login_id"));
-		
-		TableColumn<UserEntries,String> passwordColumn = new TableColumn("Password");
-		passwordColumn.setCellFactory(new PropertyValueFactory("password"));
-		
-		TableColumn<UserEntries,String> categoryColumn = new TableColumn("Category");
-		categoryColumn.setCellFactory(new PropertyValueFactory("category"));
+		accountColumn.setCellValueFactory(new PropertyValueFactory<UserEntries,String>("account_name"));
+		loginColumn.setCellValueFactory(new PropertyValueFactory<UserEntries,String>("login_id"));
+		passwordColumn.setCellValueFactory(new PropertyValueFactory<UserEntries,String>("password"));
+		categoryColumn.setCellValueFactory(new PropertyValueFactory<UserEntries,String>("category"));
 		table.setItems(getEntries());
 		
 	}
