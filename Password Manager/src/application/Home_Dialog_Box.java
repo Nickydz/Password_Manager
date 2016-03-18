@@ -22,17 +22,17 @@ public class Home_Dialog_Box {
 		this.UserID = userID;
 	}
 
-	public boolean display(String function) throws Exception{
+	public void display(String function) throws Exception{
 		if(function.equals("add"))
-			return addDialogBox();
+			addDialogBox();
 		if(function.equals("delete"))
-			return deleteDialogBox();
+			deleteDialogBox();
 		if(function.equals("edit"))
-			return editDialogBox();
+			editDialogBox();
 		
 	}
 
-	private boolean editDialogBox() throws Exception{
+	private void editDialogBox() throws Exception{
 		// TODO Auto-generated method stub
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
@@ -46,10 +46,9 @@ public class Home_Dialog_Box {
         controller.setUser(UserID);
 		window.setScene(new Scene(root, 700, 575));
 		window.showAndWait();
-		return true;
 	}
 
-	private boolean deleteDialogBox() throws IOException {
+	private void deleteDialogBox() throws IOException {
 		// TODO Auto-generated method stub
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
@@ -58,16 +57,24 @@ public class Home_Dialog_Box {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){
-		    
+		    ObservableList<UserEntry> selectedItems = getSelectedItems();
 		} else {
 		    
 		}
 		
 	}
 
-	
+	private ObservableList<UserEntry> getSelectedItems() {
+		// TODO Auto-generated method stub
+		ObservableList<UserEntry> productSelected, allProducts;
+        allProducts = table.getItems();
+        productSelected = table.getSelectionModel().getSelectedItems();
 
-	private boolean addDialogBox() throws Exception {
+        productSelected.forEach(allProducts::remove);
+		return null;
+	}
+
+	private void addDialogBox() throws Exception {
 		// TODO Auto-generated method stub
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
@@ -81,6 +88,10 @@ public class Home_Dialog_Box {
         controller.setUser(UserID);
 		window.setScene(new Scene(root, 700, 575));
 		window.showAndWait();
+		
+		
+		
+		
 		
 		
 	}
