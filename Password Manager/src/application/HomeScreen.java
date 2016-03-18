@@ -76,18 +76,21 @@ public class HomeScreen implements Initializable{
 	private void onAddEntry(MouseEvent event) throws Exception{
 		//System.out.println("lol");
 		dialogBox.display("add");
+		constructEntryTable();
 	}
 	
 	@FXML
 	private void onDeleteEntry(MouseEvent event) throws Exception{
 		//System.out.println("lol");
 		dialogBox.display("delete");
+		constructEntryTable();
 	}
 	
 	@FXML
 	private void onEditEntry(MouseEvent event) throws Exception{
 		//System.out.println("lol");
 		dialogBox.display("edit");
+		constructEntryTable();
 	}
 	
 	@FXML

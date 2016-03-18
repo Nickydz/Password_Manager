@@ -1,12 +1,15 @@
 package application;
 
 import java.io.IOException;
+import java.util.Optional;
 
-import javafx.fxml.FXML;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,17 +22,17 @@ public class Home_Dialog_Box {
 		this.UserID = userID;
 	}
 
-	public void display(String function) throws Exception{
+	public boolean display(String function) throws Exception{
 		if(function.equals("add"))
-			addDialogBox();
+			return addDialogBox();
 		if(function.equals("delete"))
-			deleteDialogBox();
+			return deleteDialogBox();
 		if(function.equals("edit"))
-			editDialogBox();
+			return editDialogBox();
 		
 	}
 
-	private void editDialogBox() throws Exception{
+	private boolean editDialogBox() throws Exception{
 		// TODO Auto-generated method stub
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
@@ -43,26 +46,28 @@ public class Home_Dialog_Box {
         controller.setUser(UserID);
 		window.setScene(new Scene(root, 700, 575));
 		window.showAndWait();
+		return true;
 	}
 
-	private void deleteDialogBox() throws IOException {
+	private boolean deleteDialogBox() throws IOException {
 		// TODO Auto-generated method stub
-		Stage window = new Stage();
-		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle("Delete Entry");
-		window.setHeight(250);
-		window.setWidth(250);
-		
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Delete_Entry.fxml")); 
-		Parent root = (Parent)fxmlLoader.load(); 
-        AddEntry controller = fxmlLoader.<AddEntry>getController();
-        controller.setUser(UserID);
-		window.setScene(new Scene(root, 700, 575));
-		window.showAndWait();
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText("Look, a Confirmation Dialog");
+		alert.setContentText("Are you ok with this?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    
+		} else {
+		    
+		}
 		
 	}
 
-	private void addDialogBox() throws Exception {
+	
+
+	private boolean addDialogBox() throws Exception {
 		// TODO Auto-generated method stub
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
@@ -76,10 +81,6 @@ public class Home_Dialog_Box {
         controller.setUser(UserID);
 		window.setScene(new Scene(root, 700, 575));
 		window.showAndWait();
-		
-		
-		
-		
 		
 		
 	}
