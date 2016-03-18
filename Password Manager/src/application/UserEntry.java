@@ -1,7 +1,6 @@
 package application;
 
-public class UserEntries {
-	
+public class UserEntry {
 	private String user_id;
 	private String entry_id;
 	private String account_name;
@@ -9,7 +8,7 @@ public class UserEntries {
 	private String login_id;
 	private String category;
 
-	public UserEntries(String userID){
+	public UserEntry(String userID){
 		this.user_id = userID;
 	}
 

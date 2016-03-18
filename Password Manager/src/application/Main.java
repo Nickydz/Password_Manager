@@ -18,7 +18,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	String user_id = "deven";
+    	String user_id = "1";
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home_Screen.fxml")); 
         Parent root = (Parent)fxmlLoader.load(); 
         HomeScreen controller = fxmlLoader.<HomeScreen>getController();

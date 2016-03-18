@@ -23,14 +23,14 @@ public class Account {
 		connection = DriverManager.getConnection("jdbc:sqlite:F:\\College\\SE\\Mini Project\\Eldian.sqlite");
 	}
 
-	public ArrayList getEntries() throws ClassNotFoundException, SQLException{
+	public ArrayList<UserEntry> getEntries() throws ClassNotFoundException, SQLException {
 		dbConnect();
-		ArrayList<UserEntries> entryList = new ArrayList<>();
+		ArrayList<UserEntry> entryList = new ArrayList<>();
 		String sql = "Select * from entries";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
-		ResultSet rs= pstmt.executeQuery();
-		while(rs.next()){
-			UserEntries userEntries = new UserEntries(userID);
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()) {
+			UserEntry userEntries = new UserEntry(userID);
 			userEntries.setAccount_name(rs.getString("account_name"));
 			userEntries.setCategory(rs.getString("category"));
 			userEntries.setPassword(rs.getString("password"));
@@ -40,6 +40,19 @@ public class Account {
 		}
 		dbClose();
 		return entryList;
+	}
+
+	public void AddEntry(String accountName, String category, String Password, String loginID)
+			throws ClassNotFoundException, SQLException {
+		dbConnect();
+		String sql = "insert into entries(account_name,password,login_id,category) values(?,?,?,?)";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, accountName);
+		preparedStatement.setString(2, Password);
+		preparedStatement.setString(3, loginID);
+		preparedStatement.setString(4, category);
+		preparedStatement.executeUpdate();
+		dbClose();
 	}
 
 	private void dbClose() throws SQLException {

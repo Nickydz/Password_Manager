@@ -31,19 +31,19 @@ public class HomeScreen implements Initializable{
 	private BorderPane borderPane;
 	
 	@FXML
-	private TableView<UserEntries> table;
+	private TableView<UserEntry> table;
 	
 	@FXML
-	private	TableColumn<UserEntries,String> accountColumn;
+	private	TableColumn<UserEntry,String> accountColumn;
 	
 	@FXML
-	private	TableColumn<UserEntries,String> loginColumn;
+	private	TableColumn<UserEntry,String> loginColumn;
 	
 	@FXML
-	private	TableColumn<UserEntries,String> passwordColumn;
+	private	TableColumn<UserEntry,String> passwordColumn;
 	
 	@FXML
-	private	TableColumn<UserEntries,String> categoryColumn;
+	private	TableColumn<UserEntry,String> categoryColumn;
 	
 	@FXML
 	private Button addEntryBT;
@@ -131,17 +131,17 @@ public class HomeScreen implements Initializable{
 
 	private void constructEntryTable() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		accountColumn.setCellValueFactory(new PropertyValueFactory<UserEntries,String>("account_name"));
-		loginColumn.setCellValueFactory(new PropertyValueFactory<UserEntries,String>("login_id"));
-		passwordColumn.setCellValueFactory(new PropertyValueFactory<UserEntries,String>("password"));
-		categoryColumn.setCellValueFactory(new PropertyValueFactory<UserEntries,String>("category"));
+		accountColumn.setCellValueFactory(new PropertyValueFactory<UserEntry,String>("account_name"));
+		loginColumn.setCellValueFactory(new PropertyValueFactory<UserEntry,String>("login_id"));
+		passwordColumn.setCellValueFactory(new PropertyValueFactory<UserEntry,String>("password"));
+		categoryColumn.setCellValueFactory(new PropertyValueFactory<UserEntry,String>("category"));
 		table.setItems(getEntries());
 		
 	}
 
-	private ObservableList<UserEntries> getEntries() throws ClassNotFoundException, SQLException {
+	private ObservableList<UserEntry> getEntries() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		ObservableList<UserEntries> userEntries = FXCollections.observableArrayList(new Account(UserID).getEntries());
+		ObservableList<UserEntry> userEntries = FXCollections.observableArrayList(new Account(UserID).getEntries());
 		return userEntries;
 	}
 
