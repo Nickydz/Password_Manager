@@ -1,5 +1,7 @@
 package application;
 
+import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -32,15 +34,16 @@ public class AddEntry {
 	private TextField loginIDField;
 	
 	@FXML
-	private void onAddEntryBTN(MouseEvent event){
+	private void onAddEntryBTN(MouseEvent event) throws ClassNotFoundException, SQLException{
 		String accountName = accountNameField.getText();
 		String password = passwordField.getText();
 		String confirmedPW = reconfirmPWField.getText();
 		String category = categoryField.getText();
 		String loginID = loginIDField.getText();
-		System.out.println(UserID);
+
 		if(password.equals(confirmedPW)){
-			
+			Account account = new Account(UserID);
+			account.AddEntry(accountName, category, password, loginID);
 		}
 		
 	}

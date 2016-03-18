@@ -45,12 +45,13 @@ public class Account {
 	public void AddEntry(String accountName, String category, String Password, String loginID)
 			throws ClassNotFoundException, SQLException {
 		dbConnect();
-		String sql = "insert into entries(account_name,password,login_id,category) values(?,?,?,?)";
+		String sql = "insert into entries(account_name,password,login_id,category,user_id) values(?,?,?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		preparedStatement.setString(1, accountName);
 		preparedStatement.setString(2, Password);
 		preparedStatement.setString(3, loginID);
 		preparedStatement.setString(4, category);
+		preparedStatement.setString(4, userID);
 		preparedStatement.executeUpdate();
 		dbClose();
 	}

@@ -37,7 +37,10 @@ public class Home_Dialog_Box {
 		window.setHeight(250);
 		window.setWidth(250);
 		
-		Parent root = FXMLLoader.load(getClass().getResource("Edit_Entry.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add_Entry.fxml")); 
+		Parent root = (Parent)fxmlLoader.load(); 
+        AddEntry controller = fxmlLoader.<AddEntry>getController();
+        controller.setUser(UserID);
 		window.setScene(new Scene(root, 700, 575));
 		window.showAndWait();
 	}
@@ -50,15 +53,12 @@ public class Home_Dialog_Box {
 		window.setHeight(250);
 		window.setWidth(250);
 		
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home_Screen.fxml")); 
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Delete_Entry.fxml")); 
 		Parent root = (Parent)fxmlLoader.load(); 
-        HomeScreen controller = fxmlLoader.<HomeScreen>getController();
+        AddEntry controller = fxmlLoader.<AddEntry>getController();
         controller.setUser(UserID);
 		window.setScene(new Scene(root, 700, 575));
 		window.showAndWait();
-		
-		
-		
 		
 	}
 
