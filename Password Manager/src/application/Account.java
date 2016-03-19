@@ -66,6 +66,20 @@ public class Account {
 			dbClose();
 		}
 	}
+		
+	public void editEntry(String accountName, String category, String Password, String loginID,String entryID) throws ClassNotFoundException, SQLException{
+		dbConnect();
+		String sql = "UPDATE entries SET account_name = ?, password = ?, login_id = ?, category = ? WHERE entry_id = ?";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, accountName);
+		preparedStatement.setString(2, Password);
+		preparedStatement.setString(3, loginID);
+		preparedStatement.setString(4, category);
+		preparedStatement.setString(5, entryID);
+		preparedStatement.executeUpdate();
+		dbClose();
+		
+	}
 
 	private void dbClose() throws SQLException {
 		// TODO Auto-generated method stub

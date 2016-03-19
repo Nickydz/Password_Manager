@@ -42,10 +42,12 @@ public class Home_Dialog_Box {
 		window.setHeight(250);
 		window.setWidth(250);
 		
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add_Entry.fxml")); 
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Edit_Entry.fxml")); 
 		Parent root = (Parent)fxmlLoader.load(); 
-        AddEntry controller = fxmlLoader.<AddEntry>getController();
+        EditEntry controller = fxmlLoader.<EditEntry>getController();
         controller.setUser(UserID);
+        controller.setSelectedItems(selectedItems);
+        controller.setDataintoFields();
 		window.setScene(new Scene(root, 700, 575));
 		window.showAndWait();
 	}
@@ -63,11 +65,8 @@ public class Home_Dialog_Box {
 		   delete.deleteEntries(selectedItems);
 		} else {
 		    
-		}
-		
+		}	
 	}
-	
-	
 	
 
 	private void addDialogBox() throws Exception {

@@ -6,10 +6,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="470.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddEntry">
+<AnchorPane prefHeight="470.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EditEntry">
    <children>
       <TextField fx:id="accountNameField" layoutX="211.0" layoutY="74.0" promptText="Enter Account Name here" />
-      <Button fx:id="AddEntryBTN" layoutX="91.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#onAddEntryBTN" text="Add Entry" />
+      <Button fx:id="AddEntryBTN" layoutX="91.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#onEditEntryBTN" text="Edit Entry" />
       <Button fx:id="CancelBTN" layoutX="223.0" layoutY="363.0" mnemonicParsing="false" text="Cancel" />
       <PasswordField fx:id="passwordField" layoutX="211.0" layoutY="187.0" promptText="Enter Password here" />
       <PasswordField fx:id="reconfirmPWField" layoutX="211.0" layoutY="240.0" promptText="Reconfirm password" />

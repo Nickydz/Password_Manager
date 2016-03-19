@@ -96,6 +96,8 @@ public class HomeScreen implements Initializable {
 	@FXML
 	private void onEditEntry(MouseEvent event) throws Exception {
 		// System.out.println("lol");
+		ObservableList<UserEntry> selectedItem = getSelectedItems();
+		dialogBox.setSelectedItems(selectedItem);
 		dialogBox.display("edit");
 		constructEntryTable();
 	}
