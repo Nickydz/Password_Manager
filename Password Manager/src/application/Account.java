@@ -51,13 +51,26 @@ public class Account {
 		preparedStatement.setString(2, Password);
 		preparedStatement.setString(3, loginID);
 		preparedStatement.setString(4, category);
-		preparedStatement.setString(4, userID);
+		preparedStatement.setString(5, userID);
 		preparedStatement.executeUpdate();
 		dbClose();
+	}
+	
+	public void deleteEntry(ArrayList<String> idListofSelectedItems) throws ClassNotFoundException, SQLException{
+		for(String entryID : idListofSelectedItems){
+			dbConnect();
+			String sql = "delete from entries where entry_id=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, entryID);
+			preparedStatement.executeUpdate();
+			dbClose();
+		}
 	}
 
 	private void dbClose() throws SQLException {
 		// TODO Auto-generated method stub
 		connection.close();
 	}
+	
+	
 }

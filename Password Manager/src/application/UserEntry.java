@@ -1,6 +1,7 @@
 package application;
 
 public class UserEntry {
+	
 	private String user_id;
 	private String entry_id;
 	private String account_name;
@@ -11,6 +12,12 @@ public class UserEntry {
 	public UserEntry(String userID){
 		this.user_id = userID;
 	}
+
+	
+	public String getUser_id() {
+		return user_id;
+	}
+
 
 	public String getEntry_id() {
 		return entry_id;

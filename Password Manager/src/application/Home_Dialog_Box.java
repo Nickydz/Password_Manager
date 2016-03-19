@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 public class Home_Dialog_Box {
 	
 	private String UserID;
+	ObservableList<UserEntry> selectedItems;
 
 	public Home_Dialog_Box(String userID) {
 		// TODO Auto-generated constructor stub
@@ -48,7 +50,7 @@ public class Home_Dialog_Box {
 		window.showAndWait();
 	}
 
-	private void deleteDialogBox() throws IOException {
+	private void deleteDialogBox() throws IOException, ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
@@ -57,22 +59,16 @@ public class Home_Dialog_Box {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){
-		    ObservableList<UserEntry> selectedItems = getSelectedItems();
+		   DeleteEntry delete = new DeleteEntry(UserID);
+		   delete.deleteEntries(selectedItems);
 		} else {
 		    
 		}
 		
 	}
-
-	private ObservableList<UserEntry> getSelectedItems() {
-		// TODO Auto-generated method stub
-		ObservableList<UserEntry> productSelected, allProducts;
-        allProducts = table.getItems();
-        productSelected = table.getSelectionModel().getSelectedItems();
-
-        productSelected.forEach(allProducts::remove);
-		return null;
-	}
+	
+	
+	
 
 	private void addDialogBox() throws Exception {
 		// TODO Auto-generated method stub
@@ -89,11 +85,11 @@ public class Home_Dialog_Box {
 		window.setScene(new Scene(root, 700, 575));
 		window.showAndWait();
 		
-		
-		
-		
-		
-		
+			
+	}
+	
+	public void setSelectedItems(ObservableList<UserEntry> selectedItems){
+		this.selectedItems = selectedItems;
 	}
 	
 }
