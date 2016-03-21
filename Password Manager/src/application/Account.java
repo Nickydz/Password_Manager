@@ -55,9 +55,9 @@ public class Account {
 		preparedStatement.executeUpdate();
 		dbClose();
 	}
-	
-	public void deleteEntry(ArrayList<String> idListofSelectedItems) throws ClassNotFoundException, SQLException{
-		for(String entryID : idListofSelectedItems){
+
+	public void deleteEntry(ArrayList<String> idListofSelectedItems) throws ClassNotFoundException, SQLException {
+		for (String entryID : idListofSelectedItems) {
 			dbConnect();
 			String sql = "delete from entries where entry_id=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -66,8 +66,9 @@ public class Account {
 			dbClose();
 		}
 	}
-		
-	public void editEntry(String accountName, String category, String Password, String loginID,String entryID) throws ClassNotFoundException, SQLException{
+
+	public void editEntry(String accountName, String category, String Password, String loginID, String entryID)
+			throws ClassNotFoundException, SQLException {
 		dbConnect();
 		String sql = "UPDATE entries SET account_name = ?, password = ?, login_id = ?, category = ? WHERE entry_id = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -78,13 +79,36 @@ public class Account {
 		preparedStatement.setString(5, entryID);
 		preparedStatement.executeUpdate();
 		dbClose();
-		
+
 	}
 
 	private void dbClose() throws SQLException {
 		// TODO Auto-generated method stub
 		connection.close();
 	}
-	
-	
+
+	public ArrayList<UserEntry> getSearchEntries(String searchString) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		dbConnect();
+		ArrayList<UserEntry> searchItemsList = new ArrayList<>();
+		String sql = "SELECT * FROM entries WHERE account_name LIKE ? or password LIKE ? or category LIKE ? or login_id LIKE ? ";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, "%" + searchString   + "%");
+		preparedStatement.setString(2,  "%" + searchString   + "%");
+		preparedStatement.setString(3,  "%" + searchString   + "%");
+		preparedStatement.setString(4,  "%" + searchString   + "%");
+		ResultSet rs = preparedStatement.executeQuery();
+		while (rs.next()) {
+			UserEntry userEntries = new UserEntry(userID);
+			userEntries.setAccount_name(rs.getString("account_name"));
+			userEntries.setCategory(rs.getString("category"));
+			userEntries.setPassword(rs.getString("password"));
+			userEntries.setLogin_id(rs.getString("login_id"));
+			userEntries.setEntry_id(rs.getString("entry_id"));
+			searchItemsList.add(userEntries);
+		}
+		dbClose();
+		return searchItemsList;
+	}
+
 }

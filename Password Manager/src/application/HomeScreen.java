@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -57,7 +58,9 @@ public class HomeScreen implements Initializable {
 
 	@FXML
 	private Button PWAnalysisBT;
-
+	
+	@FXML
+	private TextField searchField;
 	@FXML
 	private Button SNotesBT;
 
@@ -75,6 +78,7 @@ public class HomeScreen implements Initializable {
 		// System.out.println("lol");
 		dialogBox.display("add");
 		constructEntryTable();
+		table.setItems(getEntries());
 	}
 
 	@FXML
@@ -84,6 +88,7 @@ public class HomeScreen implements Initializable {
 		dialogBox.setSelectedItems(selectedItems);
 		dialogBox.display("delete");
 		constructEntryTable();
+		table.setItems(getEntries());
 	}
 
 	private ObservableList<UserEntry> getSelectedItems() {
@@ -100,6 +105,7 @@ public class HomeScreen implements Initializable {
 		dialogBox.setSelectedItems(selectedItem);
 		dialogBox.display("edit");
 		constructEntryTable();
+		table.setItems(getEntries());
 	}
 
 	@FXML
@@ -111,7 +117,6 @@ public class HomeScreen implements Initializable {
 		stage.setTitle("Hello World");
 		stage.setScene(new Scene(root, 700, 575));
 		stage.show();
-
 	}
 
 	@FXML
@@ -125,11 +130,27 @@ public class HomeScreen implements Initializable {
 		stage.show();
 
 	}
+	
+	@FXML
+	private void onSearchClick(MouseEvent event) throws Exception {
+		// System.out.println("lol");
+		String searchString = searchField.getText();
+		table.setItems(getSearchItems(searchString));
+		
+	}
+
+	
+	private ObservableList<UserEntry> getSearchItems(String searchString) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		ObservableList<UserEntry> userEntries = FXCollections.observableArrayList(new Account(UserID).getSearchEntries(searchString));
+		return userEntries;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			constructEntryTable();
+			table.setItems(getEntries());
 
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -144,7 +165,6 @@ public class HomeScreen implements Initializable {
 		passwordColumn.setCellValueFactory(new PropertyValueFactory<UserEntry, String>("password"));
 		categoryColumn.setCellValueFactory(new PropertyValueFactory<UserEntry, String>("category"));
 		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		table.setItems(getEntries());
 
 	}
 

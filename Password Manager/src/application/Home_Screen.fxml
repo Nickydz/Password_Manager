@@ -17,8 +17,8 @@
             <Button fx:id="deleteEntryBT" mnemonicParsing="false" onMouseClicked="#onDeleteEntry" prefHeight="31.0" prefWidth="140.0" text="Delete" />
             <Button fx:id="editEntryBT" mnemonicParsing="false" onMouseClicked="#onEditEntry" prefHeight="31.0" prefWidth="135.0" text="Edit" />
             <Region prefHeight="100.0" prefWidth="474.0" />
-            <TextField />
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Seacrh" />
+            <TextField fx:id="searchField" />
+            <Button fx:id="SearchBTBT" mnemonicParsing="false" onMouseClicked="#onSearchClick" prefHeight="31.0" prefWidth="124.0" text="Seacrh" />
          </children>
       </HBox>
    </top>
