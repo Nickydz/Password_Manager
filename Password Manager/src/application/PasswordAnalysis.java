@@ -28,7 +28,7 @@ import javafx.scene.text.Text;
 
 public class PasswordAnalysis implements Initializable{
 
-
+	private String userID;
 	private String Password;
 	private PasswordValidator validator;
 	private RuleResult result;
@@ -99,11 +99,18 @@ public class PasswordAnalysis implements Initializable{
 	private void onChange(KeyEvent event){
 		//System.out.println("lol");
 		Password = PasswordInput.getText();
+		boolean isValidText = checkText(Password);
 		System.out.println(PasswordInput.getText());
 		isValid = validatePassword();
 		System.out.println("is password valid : " + isValid);
 		checkEachValidation();
 		System.out.println(score.getPasswordscore());
+	}
+
+	private boolean checkText(String password2) {
+		// TODO Auto-generated method stub
+		
+		return false;
 	}
 
 	private void checkEachValidation() {
@@ -273,6 +280,7 @@ public class PasswordAnalysis implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		addTextLimiter(PasswordInput, 14);
 		score = new PasswordScore();
 		addRules();
 		score.setPasswordscore(0);
@@ -284,6 +292,23 @@ public class PasswordAnalysis implements Initializable{
 		Progress.progressProperty().bind(score.numberProperty());
 
 
+	}
+	
+	public static void addTextLimiter(final TextField tf, final int maxLength) {
+		tf.textProperty().addListener((ov,oldValue,newValue) -> {
+			if (tf.getText().length() > maxLength) {
+                String s = tf.getText().substring(0, maxLength);
+                tf.setText(s);
+            }
+			
+		});
+		
+	}
+	
+	
+	public void setUser(String user_id) {
+		// TODO Auto-generated method stub
+		this.userID = user_id;
 	}
 	
 	

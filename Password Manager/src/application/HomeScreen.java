@@ -58,7 +58,7 @@ public class HomeScreen implements Initializable {
 
 	@FXML
 	private Button PWAnalysisBT;
-	
+
 	@FXML
 	private TextField searchField;
 	@FXML
@@ -130,19 +130,19 @@ public class HomeScreen implements Initializable {
 		stage.show();
 
 	}
-	
+
 	@FXML
 	private void onSearchClick(MouseEvent event) throws Exception {
 		// System.out.println("lol");
 		String searchString = searchField.getText();
 		table.setItems(getSearchItems(searchString));
-		
+
 	}
 
-	
 	private ObservableList<UserEntry> getSearchItems(String searchString) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		ObservableList<UserEntry> userEntries = FXCollections.observableArrayList(new Account(UserID).getSearchEntries(searchString));
+		ObservableList<UserEntry> userEntries = FXCollections
+				.observableArrayList(new Account(UserID).getSearchEntries(searchString));
 		return userEntries;
 	}
 
