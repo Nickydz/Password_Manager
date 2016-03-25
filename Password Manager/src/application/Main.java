@@ -3,12 +3,9 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 
 
 public class Main extends Application {
@@ -18,10 +15,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	String user_id = "deven";
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home_Screen.fxml")); 
+    	String user_id = "1";
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Password_Generation.fxml")); 
         Parent root = (Parent)fxmlLoader.load(); 
-        HomeScreen controller = fxmlLoader.<HomeScreen>getController();
+        PasswordGeneration controller = fxmlLoader.<PasswordGeneration>getController();
         controller.setUser(user_id);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 700, 575));

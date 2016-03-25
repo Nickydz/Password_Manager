@@ -4,18 +4,15 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="339.0" prefWidth="363.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65">
+<AnchorPane prefHeight="486.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddEntry">
    <children>
-      <TextField layoutX="146.0" layoutY="82.0" />
-      <Text layoutX="31.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Name" />
-      <Text layoutX="42.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <Button layoutX="146.0" layoutY="246.0" mnemonicParsing="false" text="Add Entry" />
-      <Button layoutX="256.0" layoutY="246.0" mnemonicParsing="false" text="Cancel" />
-      <PasswordField layoutX="146.0" layoutY="139.0" />
-      <Text layoutX="42.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reconfirm Password" />
-      <PasswordField layoutX="146.0" layoutY="183.0" />
+      <TextField fx:id="accountNameField" layoutX="88.0" layoutY="79.0" promptText="Enter Account Name here" />
+      <Button fx:id="AddEntryBTN" layoutX="88.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#onAddEntryBTN" text="Add Entry" />
+      <Button fx:id="CancelBTN" layoutX="211.0" layoutY="346.0" mnemonicParsing="false" text="Cancel" />
+      <PasswordField fx:id="passwordField" layoutX="88.0" layoutY="192.0" promptText="Enter Password here" />
+      <PasswordField fx:id="reconfirmPWField" layoutX="88.0" layoutY="245.0" promptText="Reconfirm password" />
+      <TextField fx:id="categoryField" layoutX="88.0" layoutY="296.0" promptText="Enter Category here" />
+      <TextField fx:id="loginIDField" layoutX="88.0" layoutY="136.0" promptText="Enter Login ID here" />
    </children>
 </AnchorPane>

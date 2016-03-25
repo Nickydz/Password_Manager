@@ -13,7 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class PasswordGeneration {
-
+	
+	private String userID;
 	private boolean hasDigits;
 	private boolean hasLowercase;
 	private boolean hasUppercase;
@@ -46,12 +47,14 @@ public class PasswordGeneration {
 	private void onChange(MouseEvent event) throws Exception{
 
 		String length = PasswordLength.getText();
-		System.out.println(length);
 		if(length.length() == 0){
 			new AlertBox().display("Length not entered", "You must enter a length!!");
 		}
 		else if(!length.matches("[0-9]+")){
 			new AlertBox().display("Length should be a number", "You must enter a number!!");
+		}
+		else if(Integer.parseInt(length) >14 ){
+			new AlertBox().display("Invalid Length ", "Length should be less than 14!!");
 		}
 		else{
 
@@ -106,6 +109,11 @@ public class PasswordGeneration {
 				hasLowercase = true;
 			return true;
 		}
+	}
+
+	public void setUser(String user_id) {
+		// TODO Auto-generated method stub
+		this.userID = user_id;
 	}
 
 }
